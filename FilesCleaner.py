@@ -3,6 +3,7 @@
 import sys, os, time
 import datetime
 import platform
+from  LogTools import g_logger
 
 
 def TimeStampToTime(timestamp):
@@ -29,7 +30,7 @@ def getFileModifyTime(filePath):
 
 def getFileOutDays(tFile):
     if os.path.exists(tFile) is False:
-        print(u"file is not exist: %s"%(tFile))
+        g_logger.error(u"file is not exist: %s"%(tFile))
     lT1 = getFileCreateTime(tFile)
     lT2 = datetime.datetime.now()
     lDays  = (lT2 - lT1).days
@@ -39,7 +40,7 @@ def getFileOutDays(tFile):
 
 def walkDir(tDir):
     if os.path.exists(tDir) is False:
-        print(u"dir is not exist: %s" % (tDir))
+        g_logger.error(u"dir is not exist: %s" % (tDir))
         return
     lList = []
     for (dirpath, dirnames, filenames) in os.walk(tDir):
@@ -49,7 +50,7 @@ def walkDir(tDir):
 
 def getFileShelfLife(tFile):
     if os.path.exists(tFile) is False:
-        print(u"file is not exist: %s" % (tFile))
+        g_logger.error(u"file is not exist: %s" % (tFile))
         return
     lPcmFilter = u"PCM_"
     lDumpFilter = u"FxPartner_CrashDump_V"
@@ -84,7 +85,7 @@ def doBussiness():
             lIndex +=1
             print(itor)
             #os.remove(itor)
-    print(u"remove files counts: %d "%(lIndex))
+    g_logger.info(u"remove files counts: %d "%(lIndex))
 
 def watchDog():
     lLastDate = datetime.datetime(2018,01,01,0,0,0)
@@ -94,11 +95,11 @@ def watchDog():
         if (lToday- lLastDate ).seconds > 15:
             lLastDate = lToday
             # doBussiness()
-            print(u"do bussiness")
+            g_logger.info(u"do bussiness")
             time.sleep(lSleepTime)
         else:
             time.sleep(lSleepTime)
-            print(u"sleep")
+            g_logger.info(u"sleep")
 
 
 class MainRun():

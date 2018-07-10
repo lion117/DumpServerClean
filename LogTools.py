@@ -11,7 +11,7 @@ g_logger.setLevel(logging.DEBUG)
 # create file handler
 log_path = "pyInfo.log"
 fh = logging.FileHandler(log_path)
-fh.setLevel(logging.WARN)
+fh.setLevel(logging.INFO)
 # create formatter
 fmt = "%(asctime)-15s %(levelname)s %(filename)s %(lineno)d %(process)d %(message)s"
 datefmt = "%a %d %b %Y %H:%M:%S"
