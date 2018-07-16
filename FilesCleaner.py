@@ -94,7 +94,7 @@ def watchDog():
         lToday = datetime.datetime.today()
         if (lToday- lLastDate ).seconds > 15:
             lLastDate = lToday
-            # doBussiness()
+            doBussiness()
             g_logger.info(u"do bussiness")
             time.sleep(lSleepTime)
         else:
@@ -137,7 +137,7 @@ class MainRun():
         watchDog()
 
 if __name__ == "__main__":
-    # print(os.getcwd())
+    print(os.getcwd())
     # MainRun.runGetModifyTime()
     # MainRun.runGetCreateTime()
     # MainRun.runComputeTimeDiff()
